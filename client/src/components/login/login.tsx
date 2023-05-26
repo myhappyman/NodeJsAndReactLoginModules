@@ -16,6 +16,14 @@ export default function Login() {
     };
 
     const goLogin = () => {
+        if (!userId) {
+            alert("아이디를 입력하세요.");
+            return;
+        } else if (!userPw) {
+            alert("비밀번호를 입력하세요.");
+            return;
+        }
+
         const data = {
             userId: userId,
             userPw: userPw,
@@ -33,9 +41,11 @@ export default function Login() {
                 const { msg } = data;
                 if (msg === "success") {
                     setLoginInfo(userId);
+                } else {
+                    alert("일치하는 정보가 없습니다.");
                 }
             })
-            .catch((err) => console.log(err));
+            .catch((err) => alert("오류가 발생했습니다."));
     };
 
     useEffect(() => {
